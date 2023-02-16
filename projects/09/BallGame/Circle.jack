@@ -1,0 +1,68 @@
+class Circle {
+
+  field int x;
+  field int y;
+  field int radius;
+  
+
+  /** Constructs a new square with a given location and size. */
+  constructor Circle new(int Ax,int Ay, int Aradius) {
+     let x = Ax;
+     let y = Ay;
+     let radius = Aradius;
+
+     do draw();
+     return this;
+  }
+
+  /** Disposes this square. */
+  method void dispose() {
+
+     do Memory.deAlloc(this);
+     return;
+  }
+
+  /** Draws the square on the screen. */
+  method void draw() {
+     do Screen.setColor(true);
+     do Screen.drawCircle(x,y,radius);
+     return;
+  }
+
+  /** Erases the square from the screen. */
+  method void erase() {
+     do Screen.setColor(false);
+     do Screen.drawCircle(x,y,radius);
+     return;
+  }
+
+
+  /** Moves the square up by 2 pixels. */
+  method void moveUp() {
+  
+        if (y > radius) {
+          do Screen.setColor(false);
+          do Screen.drawCircle(x,y,radius);
+          do Screen.setColor(true);
+          let y = y - 10;
+          do Screen.drawCircle(x,y,radius);
+        }
+    
+     return;
+  }
+
+  /** Moves the square down by 2 pixels. */
+  method void moveDown() {
+     
+    if ((y < radius)) {
+
+      do Screen.setColor(false);
+      do Screen.drawCircle(x,y,radius);
+      do Screen.setColor(true);
+      let y = y + 10;
+      do Screen.drawCircle(x,y,radius);
+
+    }
+     return;
+  }
+}

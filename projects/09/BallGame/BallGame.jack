@@ -1,0 +1,70 @@
+class BallGame {
+
+  field Circle circle;
+
+  field int direction;
+
+  constructor BallGame new (){
+
+    let circle = Circle.new(255, 145, 10);
+
+    let direction = 0;
+    return this;
+
+  }
+
+  method void dispose() {
+    do circle.dispose();
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void moveCircle() {
+
+    if(direction = 1)
+     {
+      do circle.moveUp();
+    }
+    if(direction = 2){
+      do circle.moveDown();
+    }
+    do Sys.wait(5);
+    return;
+  }
+
+  method void run() {
+    var char key;
+    var boolean exit;
+
+    let exit = false;
+
+    while (~exit) {
+      let key = Keyboard.keyPressed();
+
+      do moveCircle();
+
+      if (key = 81) {
+        let exit = true;
+      }
+
+      if (key = 131) {
+
+        let direction = 1;
+      }
+
+      if (key = 133) {
+        let direction = 2;
+      }
+
+      while (~(key = 0)) {
+        let key = Keyboard.keyPressed();
+        do moveCircle();
+      }
+
+
+    }
+    return;
+
+  }
+
+}
